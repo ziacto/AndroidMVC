@@ -2,7 +2,7 @@ package com.androidmvc.interfaces;
 
 import java.util.HashMap;
 
-public interface IMediator extends IDispatcher{
+public interface IMediator{
 
 	public String getMediatorName( );
 

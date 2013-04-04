@@ -31,7 +31,6 @@ public class Mediator extends EventDispatcher implements IMediator, IDispatcher{
 	 */
 	public Mediator(String mediatorName, Object viewComponent) {
 		this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
-		this.viewComponent = viewComponent;
 	}
 
 	/**
@@ -41,43 +40,6 @@ public class Mediator extends EventDispatcher implements IMediator, IDispatcher{
 	 */
 	public final String getMediatorName() {
 		return mediatorName;
-	}
-
-	/**
-	 * Set the <code>IMediator</code>'s view component.
-	 * 
-	 * @param viewComponent
-	 *            The view component
-	 */
-	public void setViewComponent(Object viewComponent) {
-		this.viewComponent = viewComponent;
-	}
-
-	/**
-	 * Get the <code>Mediator</code>'s view component.
-	 * 
-	 * <P>
-	 * Additionally, an implicit getter will usually be defined in the subclass
-	 * that casts the view object to a type, like this:
-	 * </P>
-	 * 
-	 * <listing> private function get comboBox : mx.controls.ComboBox { return
-	 * viewComponent as mx.controls.ComboBox; } </listing>
-	 * 
-	 * @return the view component
-	 */
-	public Object getViewComponent() {
-		return viewComponent;
-	}
-
-	/**
-	 * List the <code>INotification</code> names this <code>Mediator</code> is
-	 * interested in being notified of.
-	 * 
-	 * @return String[] the list of <code>INotification</code> names
-	 */
-	public String[] listNotificationInterests() {
-		return new String[] {};
 	}
 
 	/**
