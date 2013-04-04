@@ -1,6 +1,6 @@
-package com.androidmvc.events;
+package com.androidmvc.interfaces;
 
-public interface Event {
+public interface IEvent {
 	
 	public String getType();
 	public Object getSource();
