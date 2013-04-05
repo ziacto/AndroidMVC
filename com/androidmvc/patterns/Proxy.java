@@ -5,8 +5,10 @@ import com.androidmvc.interfaces.IProxy;
 
 public class Proxy extends EventDispatcher implements IProxy {
 
+	public static final String NAME = "Proxy";
+	
 	// the proxy name
-	protected String proxyName = "Proxy";
+	protected String proxyName = null;
 
 	// the data object
 	protected Object data = null;
@@ -15,27 +17,11 @@ public class Proxy extends EventDispatcher implements IProxy {
 	 * Constructor
 	 * 
 	 * @param proxyName
-	 * @param data
-	 */
-	public Proxy(String proxyName, Object data) {
-		if (proxyName != null) {
-			this.proxyName = proxyName;
-		}
-		if (data != null) {
-			this.data = data;
-		}
-	}
-
-	/**
-	 * Constructor
-	 * 
-	 * @param proxyName
 	 *            Name of the <code>Proxy</code>
 	 */
-	public Proxy(String proxyName) {
-		if (proxyName != null)
-			this.proxyName = proxyName;
-
+	public Proxy(String proxyName) 
+	{
+		this.proxyName = (proxyName != null) ? proxyName : NAME;
 	}
 
 	/**

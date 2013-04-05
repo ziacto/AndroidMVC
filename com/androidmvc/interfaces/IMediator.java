@@ -2,19 +2,10 @@ package com.androidmvc.interfaces;
 
 import java.util.HashMap;
 
-public interface IMediator{
+public interface IMediator {
 
-	public String getMediatorName( );
-
-	public HashMap<String, IEventListener> getEventMap( );
-
-	/**
-	 * Called by the View when the Mediator is registered
-	 */ 
+	public String getMediatorName();
+	public HashMap<String, IEventListener> getEventMap();
 	public void onRegister();
-
-	/**
-	 * Called by the View when the Mediator is removed
-	 */ 
 	void onRemove();
 }

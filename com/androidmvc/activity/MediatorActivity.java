@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.androidmvc.events.EventDispatcher;
@@ -11,6 +12,7 @@ import com.androidmvc.interfaces.IDispatcher;
 import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
+import com.plastku.pingallery.App;
 
 public class MediatorActivity extends Activity implements IMediator {
 
@@ -35,10 +37,6 @@ public class MediatorActivity extends Activity implements IMediator {
 	protected Object viewComponent = null;
 
 	public MediatorActivity() {
-		this(null);
-	}
-
-	public MediatorActivity(IDispatcher target) {
 		this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
 	}
 
@@ -50,6 +48,19 @@ public class MediatorActivity extends Activity implements IMediator {
 	@Override
 	public HashMap<String, IEventListener> getEventMap() {
 		return new HashMap<String, IEventListener>();
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		App.getFacade().registerMediator(this);
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		App.getFacade().removeMediator(this.getMediatorName());
 	}
 
 	@Override
