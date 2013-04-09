@@ -4,7 +4,7 @@ import android.accounts.NetworkErrorException;
 import android.os.AsyncTask;
 
 import com.androidmvc.common.application.FacadeApplication;
-import com.plastku.pingallery.util.NetworkUtils;
+import com.androidmvc.common.utils.NetworkUtils;
 
 abstract public class NetworkTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
 	
