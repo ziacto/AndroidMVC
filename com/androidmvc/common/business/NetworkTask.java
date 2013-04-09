@@ -4,7 +4,6 @@ import android.accounts.NetworkErrorException;
 import android.os.AsyncTask;
 
 import com.androidmvc.common.application.FacadeApplication;
-import com.parse.ParseException;
 import com.plastku.pingallery.util.NetworkUtils;
 
 abstract public class NetworkTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
@@ -19,7 +18,6 @@ abstract public class NetworkTask<Params, Progress, Result> extends AsyncTask<Pa
 	}
 	
 	private Exception exception;
-	private ParseException parseException;
 	
 	private boolean isComplete = false;
 	public boolean isComplete() {
