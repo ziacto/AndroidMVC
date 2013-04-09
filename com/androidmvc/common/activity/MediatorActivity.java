@@ -1,11 +1,10 @@
-package com.androidmvc.activity;
+package com.androidmvc.common.activity;
 
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.androidmvc.events.EventDispatcher;
@@ -15,8 +14,7 @@ import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
 import com.plastku.pingallery.App;
 
-public class MediatorFragmentActivity extends FragmentActivity implements
-		IMediator {
+public class MediatorActivity extends Activity implements IMediator {
 
 	private static final String TAG = EventDispatcher.class.getSimpleName();
 
@@ -33,12 +31,7 @@ public class MediatorFragmentActivity extends FragmentActivity implements
 	 */
 	protected String mediatorName = null;
 
-	/**
-	 * The view component
-	 */
-	protected Object viewComponent = null;
-
-	public MediatorFragmentActivity() {
+	public MediatorActivity() {
 		this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
 	}
 
@@ -55,6 +48,13 @@ public class MediatorFragmentActivity extends FragmentActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Bundle intentExtras = getIntent().getExtras();
+		if(intentExtras != null)
+		{
+			mediatorName = (String) intentExtras.get("path");
+		}
+
 		App.getFacade().registerMediator(this);
 	}
 

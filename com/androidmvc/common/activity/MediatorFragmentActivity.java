@@ -1,10 +1,11 @@
-package com.androidmvc.activity;
+package com.androidmvc.common.activity;
 
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.androidmvc.events.EventDispatcher;
@@ -14,13 +15,14 @@ import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
 import com.plastku.pingallery.App;
 
-public class MediatorActivity extends Activity implements IMediator {
+public class MediatorFragmentActivity extends FragmentActivity implements
+		IMediator {
 
 	private static final String TAG = EventDispatcher.class.getSimpleName();
 
 	private HashMap<String, CopyOnWriteArrayList<IEventListener>> listenerMap;
 	private IDispatcher target;
-	
+
 	/**
 	 * The default name of the <code>Mediator</code>.
 	 */
@@ -36,7 +38,7 @@ public class MediatorActivity extends Activity implements IMediator {
 	 */
 	protected Object viewComponent = null;
 
-	public MediatorActivity() {
+	public MediatorFragmentActivity() {
 		this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
 	}
 
@@ -49,16 +51,22 @@ public class MediatorActivity extends Activity implements IMediator {
 	public HashMap<String, IEventListener> getEventMap() {
 		return new HashMap<String, IEventListener>();
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Bundle intentExtras = getIntent().getExtras();
+		if(intentExtras != null)
+		{
+			mediatorName = (String) intentExtras.get("path");
+		}
+		
 		App.getFacade().registerMediator(this);
 	}
-	
+
 	@Override
-	public void onDestroy()
-	{
+	public void onDestroy() {
 		super.onDestroy();
 		App.getFacade().removeMediator(this.getMediatorName());
 	}
