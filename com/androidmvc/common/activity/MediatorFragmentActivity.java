@@ -8,12 +8,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.androidmvc.common.application.FacadeApplication;
 import com.androidmvc.events.EventDispatcher;
 import com.androidmvc.interfaces.IDispatcher;
 import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
-import com.plastku.pingallery.App;
 
 public class MediatorFragmentActivity extends FragmentActivity implements
 		IMediator {
@@ -62,13 +62,13 @@ public class MediatorFragmentActivity extends FragmentActivity implements
 			mediatorName = (String) intentExtras.get("path");
 		}
 		
-		App.getFacade().registerMediator(this);
+		FacadeApplication.getFacade().registerMediator(this);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		App.getFacade().removeMediator(this.getMediatorName());
+		FacadeApplication.getFacade().removeMediator(this.getMediatorName());
 	}
 
 	@Override
