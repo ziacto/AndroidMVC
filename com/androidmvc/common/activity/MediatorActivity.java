@@ -1,4 +1,4 @@
-package com.androidmvc.activity;
+package com.androidmvc.common.activity;
 
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -7,15 +7,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.androidmvc.common.application.FacadeApplication;
 import com.androidmvc.events.EventDispatcher;
 import com.androidmvc.interfaces.IDispatcher;
 import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
-import com.plastku.pingallery.App;
 
 public class MediatorActivity extends Activity implements IMediator {
-	
+
+	private static final String TAG = EventDispatcher.class.getSimpleName();
+
+	private HashMap<String, CopyOnWriteArrayList<IEventListener>> listenerMap;
+	private IDispatcher target;
+
 	/**
 	 * The default name of the <code>Mediator</code>.
 	 */
@@ -26,6 +31,10 @@ public class MediatorActivity extends Activity implements IMediator {
 	 */
 	protected String mediatorName = null;
 
+	public MediatorActivity() {
+		this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
+	}
+
 	@Override
 	public final String getMediatorName() {
 		return mediatorName;
@@ -35,27 +44,24 @@ public class MediatorActivity extends Activity implements IMediator {
 	public HashMap<String, IEventListener> getEventMap() {
 		return new HashMap<String, IEventListener>();
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		Bundle intentExtras = getIntent().getExtras();
 		if(intentExtras != null)
 		{
 			mediatorName = (String) intentExtras.get("path");
-		}else{	
-			mediatorName = NAME;
 		}
-		
-		App.getFacade().registerMediator(this);
+
+		FacadeApplication.getFacade().registerMediator(this);
 	}
-	
+
 	@Override
-	public void onDestroy()
-	{
+	public void onDestroy() {
 		super.onDestroy();
-		App.getFacade().removeMediator(this.getMediatorName());
+		FacadeApplication.getFacade().removeMediator(this.getMediatorName());
 	}
 
 	@Override
