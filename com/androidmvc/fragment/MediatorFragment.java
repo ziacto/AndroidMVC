@@ -5,9 +5,9 @@ import java.util.HashMap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.androidmvc.patterns.Facade;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
-import com.plastku.pingallery.App;
 
 public class MediatorFragment extends Fragment implements IMediator {
 	
@@ -23,14 +23,14 @@ public class MediatorFragment extends Fragment implements IMediator {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		App.getFacade().registerMediator(this);
+		Facade.getInstance().registerMediator(this);
 	}
 	
 	@Override
 	public void onDetach()
 	{
 		super.onDetach();
-		App.getFacade().removeMediator(this.getMediatorName());
+		Facade.getInstance().removeMediator(this.getMediatorName());
 	}
 
 	@Override

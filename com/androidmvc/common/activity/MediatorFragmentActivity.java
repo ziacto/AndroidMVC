@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.androidmvc.common.application.FacadeApplication;
+import com.androidmvc.patterns.Facade;
 import com.androidmvc.events.EventDispatcher;
 import com.androidmvc.interfaces.IDispatcher;
 import com.androidmvc.interfaces.IEvent;
@@ -62,13 +62,13 @@ public class MediatorFragmentActivity extends FragmentActivity implements
 			mediatorName = (String) intentExtras.get("path");
 		}
 		
-		FacadeApplication.getFacade().registerMediator(this);
+		Facade.getInstance().registerMediator(this);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		FacadeApplication.getFacade().removeMediator(this.getMediatorName());
+		Facade.getInstance().removeMediator(this.getMediatorName());
 	}
 
 	@Override

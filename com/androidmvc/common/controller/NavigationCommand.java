@@ -1,10 +1,10 @@
 package com.androidmvc.common.controller;
 
-import com.androidmvc.common.application.FacadeApplication;
 import com.androidmvc.common.events.NavigationEvent;
 import com.androidmvc.core.Router;
 import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.patterns.Command;
+import com.androidmvc.patterns.Facade;
 
 public class NavigationCommand extends Command {
 	
@@ -20,6 +20,6 @@ public class NavigationCommand extends Command {
 		
 		NavigationEvent navEvent = new NavigationEvent(NavigationEvent.PATH_CHANGE);
 		navEvent.path = e.path;
-		FacadeApplication.getFacade().sendEvent(navEvent);
+		Facade.getInstance().dispatchEvent(navEvent);
 	}
 }

@@ -1,6 +1,7 @@
 package com.androidmvc.patterns;
 
 import com.androidmvc.events.EventDispatcher;
+import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IProxy;
 
 public class Proxy extends EventDispatcher implements IProxy {
@@ -12,6 +13,8 @@ public class Proxy extends EventDispatcher implements IProxy {
 
 	// the data object
 	protected Object data = null;
+	
+	protected Facade facade = Facade.getInstance();
 
 	/**
 	 * Constructor
@@ -61,6 +64,11 @@ public class Proxy extends EventDispatcher implements IProxy {
 	 * Called by the Model when the Proxy is removed
 	 */
 	public void onRemove() {
+	}
+	
+	@Override
+	public void dispatchEvent(IEvent event) {
+		facade.dispatchEvent(event);
 	}
 
 }

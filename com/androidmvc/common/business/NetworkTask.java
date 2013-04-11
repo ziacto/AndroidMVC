@@ -3,6 +3,7 @@ package com.androidmvc.common.business;
 import android.accounts.NetworkErrorException;
 import android.os.AsyncTask;
 
+import com.androidmvc.patterns.Facade;
 import com.androidmvc.common.application.FacadeApplication;
 import com.androidmvc.common.utils.NetworkUtils;
 

@@ -277,7 +277,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public void sendEvent(IEvent event) {
+	public void dispatchEvent(IEvent event) {
 		if (view != null)
 			view.dispatchEvent(event);
 	}
