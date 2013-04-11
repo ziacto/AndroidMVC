@@ -15,11 +15,6 @@ import com.androidmvc.interfaces.IMediator;
 import com.plastku.pingallery.App;
 
 public class MediatorActivity extends Activity implements IMediator {
-
-	private static final String TAG = EventDispatcher.class.getSimpleName();
-
-	private HashMap<String, CopyOnWriteArrayList<IEventListener>> listenerMap;
-	private IDispatcher target;
 	
 	/**
 	 * The default name of the <code>Mediator</code>.
@@ -30,15 +25,6 @@ public class MediatorActivity extends Activity implements IMediator {
 	 * The name of the <code>Mediator</code>.
 	 */
 	protected String mediatorName = null;
-
-	/**
-	 * The view component
-	 */
-	protected Object viewComponent = null;
-
-	public MediatorActivity() {
-		this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
-	}
 
 	@Override
 	public final String getMediatorName() {
@@ -53,6 +39,15 @@ public class MediatorActivity extends Activity implements IMediator {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Bundle intentExtras = getIntent().getExtras();
+		if(intentExtras != null)
+		{
+			mediatorName = (String) intentExtras.get("path");
+		}else{	
+			mediatorName = NAME;
+		}
+		
 		App.getFacade().registerMediator(this);
 	}
 	

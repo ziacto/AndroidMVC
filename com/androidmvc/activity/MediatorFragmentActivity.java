@@ -33,15 +33,6 @@ public class MediatorFragmentActivity extends FragmentActivity implements
 	 */
 	protected String mediatorName = null;
 
-	/**
-	 * The view component
-	 */
-	protected Object viewComponent = null;
-
-	public MediatorFragmentActivity() {
-		this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
-	}
-
 	@Override
 	public final String getMediatorName() {
 		return mediatorName;
@@ -55,6 +46,15 @@ public class MediatorFragmentActivity extends FragmentActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Bundle intentExtras = getIntent().getExtras();
+		if(intentExtras != null)
+		{
+			mediatorName = (String) intentExtras.get("path");
+		}else{
+			mediatorName = NAME;
+		}
+		
 		App.getFacade().registerMediator(this);
 	}
 
