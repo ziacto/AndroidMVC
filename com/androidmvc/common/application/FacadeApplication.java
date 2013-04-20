@@ -16,11 +16,12 @@ public class FacadeApplication extends Application {
      
      public void onCreate(){
          super.onCreate();
-         FacadeApplication.context = getApplicationContext();
+         context = getApplicationContext();
      }
      
     public static Context getContext() {
-        return FacadeApplication.context;
+    	System.out.print("CONTEXT");
+        return context;
     }
      
     public static Facade getFacade()

@@ -36,7 +36,7 @@ public class MediatorActivity extends Activity implements IMediator {
 	}
 
 	@Override
-	public final String getMediatorName() {
+	public String getMediatorName() {
 		return mediatorName;
 	}
 
@@ -48,12 +48,6 @@ public class MediatorActivity extends Activity implements IMediator {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		Bundle intentExtras = getIntent().getExtras();
-		if(intentExtras != null)
-		{
-			mediatorName = (String) intentExtras.get("path");
-		}
 
 		Facade.getInstance().registerMediator(this);
 	}

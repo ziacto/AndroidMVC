@@ -4,7 +4,7 @@ import com.androidmvc.core.Controller;
 import com.androidmvc.core.Model;
 import com.androidmvc.core.View;
 import com.androidmvc.events.EventDispatcher;
-import com.androidmvc.interfaces.ICommand;
+import com.androidmvc.interfaces.ISystemCommand;
 import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IFacade;
 import com.androidmvc.interfaces.IMediator;
@@ -151,7 +151,7 @@ public class Facade implements IFacade {
 	 * @param command
 	 *            an instance of the <code>ICommand</code>
 	 */
-	public void registerCommand(String eventName, ICommand command) {
+	public void registerCommand(String eventName, ISystemCommand command) {
 		controller.registerCommand(eventName, command);
 	}
 

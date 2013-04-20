@@ -2,7 +2,7 @@ package com.androidmvc.core;
 
 import java.util.HashMap;
 
-import com.androidmvc.interfaces.ICommand;
+import com.androidmvc.interfaces.ISystemCommand;
 import com.androidmvc.interfaces.IController;
 import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IEventListener;
@@ -16,12 +16,12 @@ public class Controller implements IController {
 	/**
 	 * Mapping of Notification names to Command Class references
 	 */
-	private HashMap<String, ICommand> mCommandMap;
+	private HashMap<String, ISystemCommand> mCommandMap;
 	private View mView;
 
 	protected Controller() {
 		mInstance = this;
-		mCommandMap = new HashMap<String, ICommand>();
+		mCommandMap = new HashMap<String, ISystemCommand>();
 		mView = View.getInstance();
 	}
 
@@ -38,7 +38,7 @@ public class Controller implements IController {
 	}
 
 	@Override
-	public void registerCommand(String eventName, ICommand command) {
+	public void registerCommand(String eventName, ISystemCommand command) {
 		if (null != this.mCommandMap.put(eventName, command)) {
 			return;
 		}
@@ -47,7 +47,7 @@ public class Controller implements IController {
 
 	@Override
 	public void executeCommand(IEvent event) {
-		ICommand commandInstance = (ICommand) this.mCommandMap.get(event
+		ISystemCommand commandInstance = (ISystemCommand) this.mCommandMap.get(event
 				.getType());
 		if (commandInstance != null) {
 			commandInstance.execute(event);

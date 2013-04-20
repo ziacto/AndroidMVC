@@ -43,7 +43,7 @@ public class MediatorFragmentActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public final String getMediatorName() {
+	public String getMediatorName() {
 		return mediatorName;
 	}
 
@@ -55,12 +55,6 @@ public class MediatorFragmentActivity extends FragmentActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		Bundle intentExtras = getIntent().getExtras();
-		if(intentExtras != null)
-		{
-			mediatorName = (String) intentExtras.get("path");
-		}
 		
 		Facade.getInstance().registerMediator(this);
 	}

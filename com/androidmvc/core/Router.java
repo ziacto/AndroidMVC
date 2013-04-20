@@ -247,7 +247,7 @@ public class Router {
 	 */
 	private void addFlagsToIntent(Intent intent, Context context) {
 		if (context == this._context) {
-			//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		}
 	}
 

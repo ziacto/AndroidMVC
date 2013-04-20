@@ -2,7 +2,7 @@ package com.androidmvc.interfaces;
 
 public interface IController {
 
-	public void registerCommand(String eventName, ICommand command);
+	public void registerCommand(String eventName, ISystemCommand command);
 
 	public void executeCommand(IEvent event);
 

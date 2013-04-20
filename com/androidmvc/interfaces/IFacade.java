@@ -12,7 +12,7 @@ public interface IFacade {
 
 	public boolean hasProxy(String proxyName);
 
-	public void registerCommand(String eventName, ICommand commandClassRef);
+	public void registerCommand(String eventName, ISystemCommand commandClassRef);
 
 	public void removeCommand(String eventName);
 

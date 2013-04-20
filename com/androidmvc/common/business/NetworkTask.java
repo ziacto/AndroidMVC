@@ -1,6 +1,7 @@
 package com.androidmvc.common.business;
 
 import android.accounts.NetworkErrorException;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.androidmvc.patterns.Facade;
@@ -8,6 +9,8 @@ import com.androidmvc.common.application.FacadeApplication;
 import com.androidmvc.common.utils.NetworkUtils;
 
 abstract public class NetworkTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
+	
+	protected Context mContext;
 	
 	public interface NetworkCallback<Result> {
 		public void onSuccess(Result result);
@@ -35,9 +38,15 @@ abstract public class NetworkTask<Params, Progress, Result> extends AsyncTask<Pa
 	}
 	
 	private NetworkCallback<Result> mNetworkCallback;
+
 	public void setNetworkCallback(NetworkCallback<Result> callback)
 	{
 		this.mNetworkCallback = callback;
+	}
+	
+	public NetworkTask(Context context) {
+		super();
+		this.mContext = context;
 	}
 	
 	public NetworkTask() {
@@ -84,7 +93,7 @@ abstract public class NetworkTask<Params, Progress, Result> extends AsyncTask<Pa
 		super.onPreExecute();
 		isComplete = false;
 		isAborted = false;
-		boolean hasNetworkConnection = NetworkUtils.hasInternetAccess(FacadeApplication.getContext());
+		boolean hasNetworkConnection = NetworkUtils.hasInternetAccess(mContext);
 		if (!hasNetworkConnection) {
 			if (networkUnavailableListener != null) {
 				networkUnavailableListener.onNetworkException(new NetworkErrorException("Internet connection unavailable"));
