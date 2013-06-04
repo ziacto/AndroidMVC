@@ -4,24 +4,20 @@ import java.util.HashMap;
 
 import com.androidmvc.events.EventDispatcher;
 import com.androidmvc.interfaces.IDispatcher;
+import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
 
-public class Mediator extends EventDispatcher implements IMediator, IDispatcher{
-	/**
-	 * The default name of the <code>Mediator</code>.
-	 */
+public class Mediator extends EventDispatcher implements IMediator
+{
+
 	public static final String NAME = "Mediator";
 
-	/**
-	 * The name of the <code>Mediator</code>.
-	 */
 	protected String mediatorName = null;
 
-	/**
-	 * The view component
-	 */
 	protected Object viewComponent = null;
+	
+	protected Facade facade = Facade.getInstance();
 
 	/**
 	 * Constructor.
@@ -57,5 +53,10 @@ public class Mediator extends EventDispatcher implements IMediator, IDispatcher{
 	@Override
 	public HashMap<String, IEventListener> getEventMap() {
 		return new HashMap<String, IEventListener>();
+	}
+	
+	@Override
+	public void dispatchEvent(IEvent event) {
+		facade.dispatchEvent(event);
 	}
 }

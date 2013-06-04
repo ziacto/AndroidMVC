@@ -6,11 +6,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IDispatcher;
+import com.androidmvc.interfaces.IListener;
 
 import android.util.Log;
 
 
-public class EventDispatcher implements IDispatcher {
+public class EventDispatcher implements IDispatcher, IListener {
 	
 	private static final String TAG = EventDispatcher.class.getSimpleName();
 	
@@ -76,7 +77,7 @@ public class EventDispatcher implements IDispatcher {
 		}
 	}
 	
-	public void dispose() {
+	public void disposeListeners() {
 		synchronized (listenerMap) {
 			listenerMap.clear();
 		}

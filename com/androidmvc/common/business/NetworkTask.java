@@ -97,6 +97,8 @@ abstract public class NetworkTask<Params, Progress, Result> extends AsyncTask<Pa
 		if (!hasNetworkConnection) {
 			if (networkUnavailableListener != null) {
 				networkUnavailableListener.onNetworkException(new NetworkErrorException("Internet connection unavailable"));
+			}else{
+				mNetworkCallback.onError(new Exception("Internet connection unavailable"));
 			}
 			abort();
 		}

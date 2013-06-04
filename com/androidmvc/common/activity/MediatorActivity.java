@@ -14,10 +14,9 @@ import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
 
-public class MediatorActivity extends Activity implements IMediator {
+public class MediatorActivity extends Activity implements IMediator, IDispatcher  {
 
-	private static final String TAG = EventDispatcher.class.getSimpleName();
-
+	protected Facade facade = Facade.getInstance();
 	private HashMap<String, CopyOnWriteArrayList<IEventListener>> listenerMap;
 	private IDispatcher target;
 
@@ -68,6 +67,11 @@ public class MediatorActivity extends Activity implements IMediator {
 	public void onRemove() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void dispatchEvent(IEvent event) {
+		facade.dispatchEvent(event);
 	}
 
 }
