@@ -20,16 +20,6 @@ public class Mediator extends EventDispatcher implements IMediator
 	protected Facade facade = Facade.getInstance();
 
 	/**
-	 * Constructor.
-	 * 
-	 * @param mediatorName
-	 * @param viewComponent
-	 */
-	public Mediator(String mediatorName, Object viewComponent) {
-		this.mediatorName = (mediatorName != null) ? mediatorName : NAME;
-	}
-
-	/**
 	 * Get the name of the <code>Mediator</code>.
 	 * 
 	 * @return the name

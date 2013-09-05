@@ -47,8 +47,7 @@ public class Controller implements IController {
 
 	@Override
 	public void executeCommand(IEvent event) {
-		ISystemCommand commandInstance = (ISystemCommand) this.mCommandMap.get(event
-				.getType());
+		ISystemCommand commandInstance = (ISystemCommand) this.mCommandMap.get(event.getType());
 		if (commandInstance != null) {
 			commandInstance.execute(event);
 		}

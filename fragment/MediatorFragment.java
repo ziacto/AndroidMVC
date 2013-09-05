@@ -2,12 +2,12 @@ package com.androidmvc.fragment;
 
 import java.util.HashMap;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
-import com.androidmvc.patterns.Facade;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
+import com.androidmvc.patterns.Facade;
 
 public class MediatorFragment extends Fragment implements IMediator {
 	

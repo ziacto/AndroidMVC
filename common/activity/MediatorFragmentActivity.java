@@ -3,17 +3,14 @@ package com.androidmvc.common.activity;
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
-import com.androidmvc.patterns.Facade;
-import com.androidmvc.events.EventDispatcher;
 import com.androidmvc.interfaces.IDispatcher;
 import com.androidmvc.interfaces.IEvent;
 import com.androidmvc.interfaces.IEventListener;
 import com.androidmvc.interfaces.IMediator;
+import com.androidmvc.patterns.Facade;
 
 public class MediatorFragmentActivity extends FragmentActivity implements IMediator, IDispatcher {
 
@@ -74,6 +71,19 @@ public class MediatorFragmentActivity extends FragmentActivity implements IMedia
 		// TODO Auto-generated method stub
 
 	}
+	
+	/*@Override
+	public void onPause()
+	{
+		super.onPause();
+		facade.removeMediator(this.getMediatorName());
+	}
+	
+	@Override
+	public void onResume()
+	{
+		facade.registerMediator(this);
+	}*/
 
 	@Override
 	public void dispatchEvent(IEvent event) {
