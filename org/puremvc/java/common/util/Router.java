@@ -1,4 +1,4 @@
-package com.androidmvc.core;
+package org.puremvc.java.common.util;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 
 public class Router {
 	private static final Router _router = new Router();
@@ -91,7 +90,6 @@ public class Router {
 	private final Map<String, RouterOptions> _routes = new HashMap<String, RouterOptions>();
 	private final Map<String, RouterParams> _cachedRoutes = new HashMap<String, RouterParams>();
 	private Context _context;
-	private int[] flags;
 
 	/**
      * Creates a new Router
@@ -208,11 +206,6 @@ public class Router {
      * @param url The URL; for example, "users/16" or "groups/5/topics/20"
      * @param extras The {@link Bundle} which contains the extras to be assigned to the generated {@link Intent}
      */
-	public void open(String url, int[] flags) {
-		this.flags = flags;
-		this.open(url, this._context);
-	}
-	
 	public void open(String url, Bundle extras) {
 		this.open(url, extras, this._context);
 	}
@@ -253,16 +246,8 @@ public class Router {
 	 * Allows Intents to be spawned regardless of what context they were opened with.
 	 */
 	private void addFlagsToIntent(Intent intent, Context context) {
-		if (context != this._context) {
+		if (context == this._context) {
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		}
-		if(this.flags != null)
-		{
-			for(int flag : flags)
-			{
-				intent.addFlags(flag);
-				Log.i("FLAG: ", String.valueOf(flag));
-			}
 		}
 	}
 
