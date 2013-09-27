@@ -1,4 +1,4 @@
-package org.puremvc.java.common.util;
+package org.puremvc.java.common.utils;
 
 import java.util.Arrays;
 import java.util.HashMap;
