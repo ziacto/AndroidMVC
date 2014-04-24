@@ -48,6 +48,12 @@ public class Proxy extends Notifier implements IProxy
 	protected Object data = null;
 
 	/**
+	 * Default Constructor
+	 */
+	public Proxy() {
+	}
+
+	/**
 	 * Constructor
 	 * @param proxyName 
 	 * @param data 
