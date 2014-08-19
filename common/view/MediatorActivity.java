@@ -3,26 +3,37 @@ package org.puremvc.java.common.view;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import org.puremvc.java.interfaces.IFunction;
 import org.puremvc.java.interfaces.IMediator;
 import org.puremvc.java.interfaces.INotification;
 import org.puremvc.java.interfaces.INotifier;
 import org.puremvc.java.patterns.facade.Facade;
+
+import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Created by shaunkutch on 5/18/13.
  */
 public class MediatorActivity extends Activity implements IMediator, INotifier {
 
-    public static String NAME = "mediatorActivity";
+    /**
+     * The name of the <code>Mediator</code>.
+     */
+    protected String mediatorName = null;
+
     /**
      * Local reference to the Facade Singleton
      */
     protected Facade facade = Facade.getInstance();
     private Object viewComponent;
 
+    protected HashMap<String, IFunction> interests = new HashMap<String, IFunction>();
+
     @Override
     public String getMediatorName() {
-        return NAME;
+        return mediatorName;
     }
 
     @Override
@@ -37,12 +48,17 @@ public class MediatorActivity extends Activity implements IMediator, INotifier {
 
     @Override
     public String[] listNotificationInterests() {
-        return new String[0];
+        Object[] objectArray = interests.keySet().toArray();
+        String[] stringArray = Arrays.copyOf(objectArray, objectArray.length, String[].class);
+        return stringArray;
     }
 
     @Override
     public void handleNotification(INotification notification) {
-
+        IFunction function = interests.get(notification.getName());
+        if(function != null) {
+            function.onNotification(notification);
+        }
     }
 
     @Override
@@ -107,6 +123,18 @@ public class MediatorActivity extends Activity implements IMediator, INotifier {
     public void sendNotification( String notificationName)
     {
         facade.sendNotification( notificationName);
+    }
+
+    /**
+     * Notify <code>Observer</code>s of an <code>INotification</code>.
+     *
+     * @param note
+     *            the <code>INotification</code> to have the <code>View</code>
+     *            notify observers of.
+     */
+    public void sendNotification( INotification note )
+    {
+        facade.notifyObservers(note);
     }
 
     @Override
