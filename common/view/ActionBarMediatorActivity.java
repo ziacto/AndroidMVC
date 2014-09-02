@@ -30,8 +30,7 @@ public class ActionBarMediatorActivity extends ActionBarActivity implements IMed
 
     protected HashMap<String, IFunction> interests = new HashMap<String, IFunction>();
 
-    public ActionBarMediatorActivity(String mediatorName) {
-        this.mediatorName = mediatorName;
+    public ActionBarMediatorActivity() {
     }
 
     @Override

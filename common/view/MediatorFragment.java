@@ -30,8 +30,7 @@ public class MediatorFragment extends Fragment implements IMediator, INotifier {
 
     protected HashMap<String, IFunction> interests = new HashMap<String, IFunction>();
 
-    public MediatorFragment(String mediatorName) {
-        this.mediatorName = mediatorName;
+    public MediatorFragment() {
     }
 
     @Override
