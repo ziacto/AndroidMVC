@@ -30,6 +30,8 @@ public class ActionBarMediatorActivity extends ActionBarActivity implements IMed
 
     protected HashMap<String, IFunction> interests = new HashMap<String, IFunction>();
 
+    public boolean isInFront;
+
     public ActionBarMediatorActivity() {
     }
 
@@ -58,7 +60,7 @@ public class ActionBarMediatorActivity extends ActionBarActivity implements IMed
     @Override
     public void handleNotification(INotification notification) {
         IFunction function = interests.get(notification.getName());
-        if(function != null) {
+        if(function != null && isInFront) {
             function.onNotification(notification);
         }
     }
@@ -138,5 +140,17 @@ public class ActionBarMediatorActivity extends ActionBarActivity implements IMed
     public void onDestroy() {
         super.onDestroy();
         Facade.getInstance().removeMediator(this.getMediatorName());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isInFront = true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isInFront = false;
     }
 }
